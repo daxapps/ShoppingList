@@ -19,10 +19,22 @@ var addItem = function(state, item) {
 var checkItem = function(state, item) {
 // find item in state, update checked property
 // render state to reflect(like with add item)
-  state.items[0] = ( {
+  // if (state.items.checked === false) {
+    state.items[0] = ( {
       name: item,
       checked: true
     });
+  // } else {
+  //   state.items[0] = ( {
+  //     name: item,
+  //     checked: false
+  //   });
+  // }
+  
+}
+
+var removeItem = function(state, item) {
+
 }
 
 // Render functions
@@ -45,7 +57,7 @@ $('#js-shopping-list-form').submit(function(event) {
 });
 
 $('.shopping-list').on('click', ".shopping-item-toggle", function(event) {
-  var targetItem = $(this).closest(".shopping-list").find(".shopping-item")
+  var targetItem = $(this).closest("li").find(".shopping-item")
     checkItem(state, targetItem.toggleClass('shopping-item__checked'))
 	
   console.log(state)
