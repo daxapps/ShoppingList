@@ -18,23 +18,14 @@ var addItem = function(state, item) {
 
 var checkItem = function(state, item) {
 // find item in state, update checked property
-// render state to reflect(like with add item)
-  // if (state.items.checked === false) {
     state.items[0] = ( {
       name: item,
       checked: true
     });
-  // } else {
-  //   state.items[0] = ( {
-  //     name: item,
-  //     checked: false
-  //   });
-  // }
-  
 }
 
 var removeItem = function(state, item) {
-
+  state.items = ({})
 }
 
 // Render functions
@@ -44,9 +35,6 @@ var renderList = function(state, element) {
       });
     element.html(itemsHTML);
 };
-
-// remove item
-// $("span").closest(li).remove()
 
 // Event listeners
 $('#js-shopping-list-form').submit(function(event) {
@@ -59,10 +47,13 @@ $('#js-shopping-list-form').submit(function(event) {
 $('.shopping-list').on('click', ".shopping-item-toggle", function(event) {
   var targetItem = $(this).closest("li").find(".shopping-item")
     checkItem(state, targetItem.toggleClass('shopping-item__checked'))
-	
   console.log(state)
 })
 
+$('.shopping-list').on('click', '.shopping-item-delete', function(event) {
+  removeItem(state, $(this).closest('li').remove())
+  console.log(state)
+})
 
 
 
